@@ -17,7 +17,8 @@ RUN git submodule update --init --recursive && ./configure && make -C tmp
 FROM alpine
 RUN apk update && apk add --no-cache \
     readline \
-    openssl &&\
+    openssl \
+    dhclient coreutils && \
     apk add --no-cache gnu-libiconv --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
 ENV LD_LIBRARY_PATH /root
