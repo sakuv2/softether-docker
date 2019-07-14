@@ -20,7 +20,7 @@ docker run -d --name softether-server -p 443:443/tcp -p 992:992/tcp -p 1194:1194
 `server/init.sh`の変数や処理をいい感じに変更し以下を実行する 
 
 ```
-cd client
+cd server
 docker-compose up -d
 docker cp init.sh $(docker-compose ps -q):/root/init.sh
 docker-compose exec sh init.sh

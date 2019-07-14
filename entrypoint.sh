@@ -33,11 +33,11 @@ case "$1" in
   "client")
     set_ip &
     echo "start vpnclient"
-    exec /root/vpnclient execsvc
+    exec sh -c "/root/vpnclient execsvc"
     ;;
   "server")
     echo "start vpnserver"
-    exec /root/vpnserver execsvc
+    exec sh -c "/root/vpnserver execsvc"
     ;;
 esac
-exec "$@"
+exec sh -c "`echo $@`"

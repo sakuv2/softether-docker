@@ -15,8 +15,9 @@ WORKDIR /usr/local/src/SoftEtherVPN
 RUN git submodule update --init --recursive && ./configure && make -C tmp
 
 FROM alpine
+WORKDIR /root/
 COPY --from=builder /usr/local/src/SoftEtherVPN/build .
-COPY entrypoint.sh /root/entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
 RUN apk update && apk add --no-cache \
     readline \
     openssl \
@@ -25,7 +26,6 @@ RUN apk update && apk add --no-cache \
 ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so \
     LD_LIBRARY_PATH=/root \
     CLIENT_NICNAME=vpn0
-WORKDIR /root/
 VOLUME ["/server", "/client"]
 RUN ln -s /server/vpn_server.config vpn_server.config && \
     ln -s /client/vpn_client.config vpn_client.config && \
