@@ -1,13 +1,12 @@
 version: '3'
-volumes:
-  softether-server: {}
 services:
-  softether-server:
+  server:
     image: agarichan/softether
     container_name: softether-server
     cap_add:
-    - NET_ADMIN
+      - NET_ADMIN
     volumes:
-    - softether-server:/server
+      - ./server:/server
     ports:
-    - 5555:5555/tcp
+      - 5432:5432
+    restart: always

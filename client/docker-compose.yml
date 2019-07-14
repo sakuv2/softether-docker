@@ -1,0 +1,13 @@
+version: '3'
+services:
+  client:
+    image: agarichan/softether
+    container_name: softether-client
+    privileged: true
+    devices:
+      - /dev/net/tun
+    network_mode: host
+    volumes:
+      - ./client:/client
+    command: /root/vpnclient execsvc
+    restart: always
