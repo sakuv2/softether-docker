@@ -23,7 +23,7 @@ docker run -d --name softether-server -p 443:443/tcp -p 992:992/tcp -p 1194:1194
 cd server
 docker-compose up -d
 docker cp init.sh $(docker-compose ps -q):/root/init.sh
-docker-compose exec sh init.sh
+docker-compose exec server sh init.sh
 ```
 
 Client mode
@@ -48,7 +48,7 @@ docker exec softehter-client /root/vpncmd localhost /CLIENT
 cd client
 docker-compose up -d
 docker cp init.sh $(docker-compose ps -q):/root/init.sh
-docker-compose exec sh init.sh
+docker-compose exec client sh init.sh
 ```
 
 再起動後、NICにIPを割り当てる必要があるが自動化するために以下の環境変数が使用できる  

@@ -9,5 +9,5 @@ services:
     network_mode: host
     volumes:
       - ./client:/client
-    command: /root/vpnclient execsvc
+    command: client
     restart: always
