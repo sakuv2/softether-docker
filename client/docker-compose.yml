@@ -8,6 +8,9 @@ services:
       - /dev/net/tun
     network_mode: host
     volumes:
-      - ./client:/client
+      - softether-client:/client
     command: client
     restart: always
+
+volumes:
+  softether-client:

@@ -6,7 +6,10 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - ./server:/server
+      - softether-server:/server
     ports:
       - 5432:5432
     restart: always
+
+volumes:
+  softether-server:
