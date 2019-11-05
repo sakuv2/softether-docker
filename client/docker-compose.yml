@@ -9,6 +9,9 @@ services:
     network_mode: host
     volumes:
       - softether-client:/client
+    # environment:
+    #   - CLIENT_IP=10.8.0.1/24
+    #   - ROUTES=[{"to":"172.16.1.0/24","via":"10.8.0.253"},{"to":"10.5.0.0/16","via":"10.8.0.253"}]
     command: client
     restart: always
 

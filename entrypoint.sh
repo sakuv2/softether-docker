@@ -1,5 +1,15 @@
-#!/bin/sh
-set -e
+#!/bin/bash
+
+set_route () {
+  len=$(echo $ROUTES | jq length)
+  for i in $( seq 0 $(($len - 1)) ); do
+    row=$(echo $ROUTES | jq .[$i])
+    to=$(echo $row | jq -r .to)
+    via=$(echo $row | jq -r .via)
+    echo "ip route add ${to} via ${via} dev vpn_${CLIENT_NICNAME}"
+    ip route add ${to} via ${via} dev vpn_${CLIENT_NICNAME}
+  done  
+}
 
 set_ip () {
   sleep 5
@@ -14,6 +24,7 @@ set_ip () {
         ip a add ${CLIENT_IP} dev vpn_${CLIENT_NICNAME}
         if [ $? -eq 0 ]; then
           echo "succeed: set ip: ${CLIENT_IP}"
+          set_route
         else
           echo "failed: set ip: ${CLIENT_IP}"
         fi
